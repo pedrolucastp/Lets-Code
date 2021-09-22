@@ -33,3 +33,23 @@ const carrinho = [
     valorDaUnidade: 350.0,
   },
 ];
+
+const valorDoFrete = 15;
+
+const total = carrinho.reduce(
+  (soma, produto) => (soma += produto.valorDaUnidade * produto.quantidade),
+  valorDoFrete
+);
+
+const formato = {
+  BRL: "pt-BR",
+};
+
+const moeda = "BRL";
+
+const totalEmReais = Intl.NumberFormat(formato[moeda], {
+  style: "currency",
+  currency: moeda,
+}).format(total);
+
+console.log(totalEmReais);

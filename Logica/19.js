@@ -1,22 +1,21 @@
-/* Utilize a biblioteca faker em seu index.html:
-e o seguinte código no seu script para gerar usuários aleatórios
+/* Organize usuarios por estado: Utilize a biblioteca faker em seu index.html:
+e o seguinte código no seu script para gerar usuários aleatórios */
 
-```jsx
-faker.locale = "pt_BR"
+faker.locale = "pt_BR";
 
-const usersAmount = 100
+const quantidadeUsuarios = 100;
 
-const usuarios = Array.from({ length: usersAmount }, () => {
-  return  {
-    nome: faker.name.findName(),
-    estado: faker.address.stateAbbr()
-  }
-})
-```
+const listaUsuarios = Array.from({ length: quantidadeUsuarios }, () => {
+  return {
+    nome: faker.name.firstName(),
+    estado: faker.address.stateAbbr(),
+  };
+});
 
-Agora retorne um novo objeto com o seguinte formato como exemplo:
+console.log(listaUsuarios);
 
-```json
+/* Agora retorne um novo objeto com o seguinte formato como exemplo:
+
 {
   usuariosDoMeuEstado: [
     "Bia",
@@ -29,4 +28,28 @@ Agora retorne um novo objeto com o seguinte formato como exemplo:
     "Ju"
   ],
 }
-``` */
+*/
+
+const meuEstado = prompt("Digite sua Unidade Federal:");
+
+const objetoUsuarios = {
+  mesmoEstado: [],
+  outrosEstados: [],
+};
+
+const usuariosPorEstado = listaUsuarios.reduce(function (
+  usuariosAgrupados,
+  usuario
+) {
+  if (usuario.estado === meuEstado) {
+    usuariosAgrupados.mesmoEstado.push(usuario);
+    return usuariosAgrupados;
+  } else {
+    usuariosAgrupados.outrosEstados.push(usuario);
+    return usuariosAgrupados;
+  }
+},
+objetoUsuarios);
+
+console.log(usuariosPorEstado.mesmoEstado);
+console.log(usuariosPorEstado.outrosEstados);
