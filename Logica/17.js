@@ -1,10 +1,6 @@
 // Refaça o exercício 2 utilizando reduce
 // Faça um programa que fornece o número de ocorrências de cada sobrenome da lista abaixo
-/* 
-const nums = [10, 20, 30, 40, 50];
-const soma = nums.reduce((somatoria, item) => somatoria + item);
-console.log(soma); // 150
- */
+
 
 const pessoas = [
   "Ana Peres",
