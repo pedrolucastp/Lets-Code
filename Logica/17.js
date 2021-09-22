@@ -22,9 +22,9 @@ const pessoas = [
   "Jonas Peres",
 ];
 
-console.log(pessoas.reduce(myFunc));
+console.log(pessoas.reduce(contaSobrenomes));
 
-function myFunc(total, num) {
+function contaSobrenomes(total, num) {
   if (typeof total === "string") {
     let _total = total.split(" ");
     total = {};
