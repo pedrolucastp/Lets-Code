@@ -1,7 +1,6 @@
 // Refaça o exercício 2 utilizando reduce
 // Faça um programa que fornece o número de ocorrências de cada sobrenome da lista abaixo
 
-
 const pessoas = [
   "Ana Peres",
   "Maria Silva",

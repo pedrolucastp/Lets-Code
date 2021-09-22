@@ -18,26 +18,25 @@ const pessoas = [
   "Carla Zuko",
   "Bruna de Almeida",
   "Jonas Peres",
-]
+];
 
-const contadorSobrenomes = {}
+const contadorSobrenomes = {};
 
 for (let nome of pessoas) {
-    const arrayNomeSobrenome = nome.split(" ");
-    let sobrenome = null;
-    for (indice in arrayNomeSobrenome) {
-        if (indice > 0) {
-            sobrenome = sobrenome 
-            ? sobrenome + " " + arrayNomeSobrenome[indice] 
-            : arrayNomeSobrenome[indice]
-        };
-    };
-    const quantidade = contadorSobrenomes[sobrenome];
-    if (contadorSobrenomes[sobrenome]) {
-        contadorSobrenomes[sobrenome] = quantidade + 1;
-  } else {
-        contadorSobrenomes[sobrenome] = 1;
+  const arrayNomeSobrenome = nome.split(" ");
+  let sobrenome = null;
+  for (indice in arrayNomeSobrenome) {
+    if (indice > 0) {
+      sobrenome = sobrenome
+        ? sobrenome + " " + arrayNomeSobrenome[indice]
+        : arrayNomeSobrenome[indice];
+    }
   }
-};
-
-console.log(contadorSobrenomes)
+  const quantidade = contadorSobrenomes[sobrenome];
+  if (contadorSobrenomes[sobrenome]) {
+    contadorSobrenomes[sobrenome] = quantidade + 1;
+  } else {
+    contadorSobrenomes[sobrenome] = 1;
+  }
+}
+console.log(contadorSobrenomes);

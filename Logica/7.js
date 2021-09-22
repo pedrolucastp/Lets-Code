@@ -39,4 +39,4 @@ function geraCsv(perfis) {
 }
 
 geraCsv(listaDePerfis);
-console.log(csv)
+console.log(csv);

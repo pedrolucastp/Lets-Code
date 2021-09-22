@@ -25,7 +25,7 @@ function checaPrimo(numero) {
     }
   });
 
-  return ehPrimo
+  return ehPrimo;
 }
 
 const arrayComPrimos = array.filter((numero) => {
