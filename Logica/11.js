@@ -1,4 +1,4 @@
-/* 11. Filtre uma lista de alunos para remover um aluno com uma
+/* Filtre uma lista de alunos para remover um aluno com uma
  propriedade id digitada pelo usuário. */
 /* 
  let listaAlunos = []
@@ -44,21 +44,28 @@
 
  */
 
-faker.locale = "pt-BR"
+faker.locale = "pt_BR";
 
-const usuarios = Array.from({length: 10}, () => ({
-    nome: faker.name.findName(),
-    id: faker.datatype.uuid(),
+const usuarios = Array.from({ length: 10 }, () => ({
+  nome: faker.name.findName(),
+  id: faker.datatype.uuid(),
 }));
 
-usuarios.forEach(usuario => console.log(usuarios.id))
 
-const idPesquisado = prompt(
-    "Entre com um id"
-)
+usuarios.forEach(function (usuario) {
+  console.log(usuario);
+});
 
-const usuarioEncontrado = 
-usuarios.filter(usuario => usuarios.id === idPesquisado)
+const idPesquisado = prompt("Entre com um id");
 
-console.log(usuarios)
-console.log(usuarioEncontrado)
+const usuarioEncontrado = usuarios.find(
+  (usuario) => usuario.id === idPesquisado
+);
+
+console.log("Usuario encontrado: ", usuarioEncontrado);
+
+const listaFiltrada = usuarios.filter(
+    (usuario) => usuario.id !== idPesquisado
+  );
+  
+  console.log("Lista filtrada: ", listaFiltrada);

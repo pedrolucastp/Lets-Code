@@ -1,4 +1,4 @@
-//2. Faça um programa que fornece o número de ocorrências de cada sobrenome da lista abaixo
+// Faça um programa que fornece o número de ocorrências de cada sobrenome da lista abaixo
 
 const pessoas = [
   "Ana Peres",

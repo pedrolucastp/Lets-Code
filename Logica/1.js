@@ -1,5 +1,5 @@
-/* 1. Vamos fazer um programa para cadastro de alunos 
-em uma academia, para isso iremos salvá-los em uma lista! 
+/* Fazer um programa para cadastro de alunos 
+em uma academia, para isso iremos salvá-los em uma lista.
 Cada aluno possui os seguintes dados:
 
 name: string

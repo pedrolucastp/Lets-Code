@@ -6,28 +6,44 @@ const soma = nums.reduce((somatoria, item) => somatoria + item);
 console.log(soma); // 150
  */
 
-
 const pessoas = [
-    "Ana Peres",
-    "Maria Silva",
-    "Cleide Peres",
-    "Carlos Levir",
-    "Zeca Silva",
-    "Paulo Souza",
-    "Roger Guimarães",
-    "Carlos de Almeida",
-    "Mayk Souza",
-    "Paula Guimarães",
-    "Edson Souza",
-    "Milena Komatsu",
-    "Zé Souza",
-    "Joana Batisteti",
-    "Carla Zuko",
-    "Bruna de Almeida",
-    "Jonas Peres",
-  ]
+  "Ana Peres",
+  "Maria Silva",
+  "Cleide Peres",
+  "Carlos Levir",
+  "Zeca Silva",
+  "Paulo Souza",
+  "Roger Guimarães",
+  "Carlos de Almeida",
+  "Mayk Souza",
+  "Paula Guimarães",
+  "Edson Souza",
+  "Milena Komatsu",
+  "Zé Souza",
+  "Joana Batisteti",
+  "Carla Zuko",
+  "Bruna de Almeida",
+  "Jonas Peres",
+];
 
-const somaSobrenome = pessoas.reduce((obj, sobrenome) => obj + sobrenome + 1, {});
+console.log(pessoas.reduce(myFunc));
+
+function myFunc(total, num) {
+  if (typeof total === "string") {
+    let _total = total.split(" ");
+    total = {};
+    total[_total[_total.length - 1]] = 1;
+  }
+  num = num.split(" ");
+  if (num[num.length - 1] in total) {
+    total[num[num.length - 1]] += 1;
+  } else {
+    total[num[num.length - 1]] = 1;
+  }
+  return total;
+}
+
+/* const somaSobrenome = pessoas.reduce((obj, sobrenome) => obj + sobrenome + 1, {});
 console.log(somaSobrenome)
 
 const contadorSobrenomes = {}
@@ -50,4 +66,4 @@ for (let nome of pessoas) {
   }
 };
 
-console.log(contadorSobrenomes)
+console.log(contadorSobrenomes) */

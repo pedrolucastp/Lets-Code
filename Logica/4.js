@@ -1,4 +1,4 @@
-/* 4. Faça um programa que receba 5 números do usuário 
+/* Faça um programa que receba 5 números do usuário 
 e os armazene de maneira ordenada em um array. */
 
 const arrayOrdenada = [];

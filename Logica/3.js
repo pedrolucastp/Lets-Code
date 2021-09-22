@@ -1,4 +1,4 @@
-/* 2. Uma doceria tem um painel para informar os doces disponíveis
+/* Uma doceria tem um painel para informar os doces disponíveis
 
     🍰 64 pedaços
 

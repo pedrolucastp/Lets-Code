@@ -1,4 +1,4 @@
-/* 2. Retire todos os números menores que 10 do array = [12, 5, 8, 130, 44]. */
+/* Retire todos os números menores que 10 do array = [12, 5, 8, 130, 44]. */
 
 const  array = [12, 5, 8, 130, 44]
 
