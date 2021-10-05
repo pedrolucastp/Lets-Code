@@ -5,8 +5,7 @@ const quantidadePorCartela = 10;
 const cartelas = Array.from({ length: 1000 }, () => {
   const numerosApostados = [];
 
-  Array.from(
-    {
+  Array.from({
       length: quantidadePorCartela,
     },
     () => {
