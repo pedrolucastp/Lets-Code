@@ -307,32 +307,76 @@ class Audiobook extends Livro {
 const livro1 = new Livro ('Fulano', '1970')
 const ebook1 = new Ebook ('Beltrano', '2020', 200, 10)
 const audiobook1 = new Audiobook ('Ciclano', '2021', 130)
-console.log(livro1)
-console.log(ebook1)
-console.log(audiobook1)
+// console.log(livro1)
+// console.log(ebook1)
+// console.log(audiobook1)
 
 
 /* 18. Crie uma classe Camera que deve ter como propriedades 
-resolucaoMaxima e fotosTiradas e um método tiraFoto que apenas aumenta o 
+resolucaoMax e fotosTiradas e um método tiraFoto que apenas aumenta o 
 número de fotos tiradas. Crie uma classe Celular que  tenha como 
 propriedades espacoDisponivel (em número de fotos), cameraFrontal e 
 cameraTraseira. Tanto a cameraFrontal como a cameraTraseira devem ser 
 classes que herdam de Camera e tem como propriedades adicionais a 
-resolucaoAtual (não pode ser superior à resolucaoMaxima). Ambas apenas 
+resolucaoAtual (não pode ser superior à resolucaoMax). Ambas apenas 
 podem tirar fotos se houver espaço disponível no celular e a 
-cameraFrontal deve ter resolucaoMaxima menor que a cameraTraseira. */
-
+cameraFrontal deve ter resolucaoMax menor que a cameraTraseira. */
 class Camera {
-    constructor() {
-        this.resolucaoMaxima = 1080,
-        this.fotosTiradas = 100,
-
-        tiraFoto (this.fotosTiradas += 1)
+  #resolucoesOrdenadas = ['low','standard','high']
+  constructor(resolucaoMax,fotosTiradas=0) {
+    this.resolucaoMax = resolucaoMax
+        this.fotosTiradas = fotosTiradas
+    }
+    tiraFotos(quantidadeDeFotos) {
+      if(quantidadeDeFotos < 1) {
+        return
+      }
+      this.fotosTiradas += quantidadeDeFotos
     }
 }
 
-class Celular {
-    constructor() {
-        this.espacoDisponivel = '1000'
+
+class Celular /* extends Camera */ { 
+    constructor(
+      resolucaoMaxCameraFrontal,
+      resolucaoMaxCameraTraseira,
+      espacoDisponivel) {
+      // super(resolucaoMax,fotosTiradas)
+        this.espacoDisponivel = espacoDisponivel = espacoDisponivel >= 0 ? espacoDisponivel : 0
+        this.cameraFrontal = new Camera(resolucaoMaxCameraFrontal,fotosTiradas)
+        this.cameraTraseira = new Camera(resolucaoMaxCameraTraseira,fotosTiradas)
     }
 }
+
+class CameraDeCelular extends Camera {
+  #resolucaoAtual
+  #resolucoesOrdenadas = ['low','standard','high']
+  constructor(resolucaoMax, fotosTiradas, resolucaoAtual) {
+    super(resolucaoMax,fotosTiradas)
+    this.#resolucaoAtual = resolucaoAtual
+  }
+  get resolucaoAtual() {
+    return this.#resolucaoAtual
+  }
+  set resolucaoAtual(resolucao) {
+    const indiceDaResolucao = this.#resolucoesOrdenadas.findIndex(
+      procuraResolucao => {
+        return procuraResolucao === resolucao
+    })
+
+    const indiceDaResolucaoMaxima = this.#resolucoesOrdenadas.findIndex(
+      procuraResolucao => {
+        return procuraResolucao === this.resolucaoMax
+      }
+    )
+    if (indiceDaResolucao > indiceDaResolucaoMaxima) {
+      return
+    }
+    this.#resolucaoAtual = resolucao
+  }
+}
+const polaroid = new Camera('low')
+const s9 = new Celular('high')
+console.log(polaroid)
+console.log(s9)
+console.log(s9.cameraFrontal.fotosTiradas)
