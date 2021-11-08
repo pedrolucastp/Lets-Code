@@ -321,12 +321,13 @@ classes que herdam de Camera e tem como propriedades adicionais a
 resolucaoAtual (não pode ser superior à resolucaoMax). Ambas apenas 
 podem tirar fotos se houver espaço disponível no celular e a 
 cameraFrontal deve ter resolucaoMax menor que a cameraTraseira. */
-class Camera {
-  #resolucoesOrdenadas = ['low','standard','high']
+
+/* {
+  class Camera {
   constructor(resolucaoMax,fotosTiradas=0) {
-    this.resolucaoMax = resolucaoMax
+    this.resolucaoMaxima = resolucaoMax
         this.fotosTiradas = fotosTiradas
-    }
+  }
     tiraFotos(quantidadeDeFotos) {
       if(quantidadeDeFotos < 1) {
         return
@@ -335,48 +336,91 @@ class Camera {
     }
 }
 
-
-class Celular /* extends Camera */ { 
-    constructor(
-      resolucaoMaxCameraFrontal,
-      resolucaoMaxCameraTraseira,
-      espacoDisponivel) {
-      // super(resolucaoMax,fotosTiradas)
-        this.espacoDisponivel = espacoDisponivel = espacoDisponivel >= 0 ? espacoDisponivel : 0
-        this.cameraFrontal = new Camera(resolucaoMaxCameraFrontal,fotosTiradas)
-        this.cameraTraseira = new Camera(resolucaoMaxCameraTraseira,fotosTiradas)
-    }
-}
-
 class CameraDeCelular extends Camera {
   #resolucaoAtual
-  #resolucoesOrdenadas = ['low','standard','high']
-  constructor(resolucaoMax, fotosTiradas, resolucaoAtual) {
+  #resolucaoMaxima
+  #resolucoesOrdenadas = ['low','medium','high','full hd']
+  #celular
+  constructor(celular, resolucaoMax, fotosTiradas,cameraTraseira) {
     super(resolucaoMax,fotosTiradas)
-    this.#resolucaoAtual = resolucaoAtual
+    this.#resolucaoAtual = resolucaoMax
+    this.#celular = celular
+    this.#cameraTraseira = cameraTraseira
   }
   get resolucaoAtual() {
     return this.#resolucaoAtual
   }
   set resolucaoAtual(resolucao) {
     const indiceDaResolucao = this.#resolucoesOrdenadas.findIndex(
-      procuraResolucao => {
-        return procuraResolucao === resolucao
-    })
+      procuraResolucao => {return procuraResolucao === resolucao}
+    )
 
     const indiceDaResolucaoMaxima = this.#resolucoesOrdenadas.findIndex(
-      procuraResolucao => {
-        return procuraResolucao === this.resolucaoMax
-      }
+      procuraResolucao => {return procuraResolucao === this.resolucaoMaxima}
     )
+
+    if (indiceDaResolucao === -1) {
+      return
+    }
+
     if (indiceDaResolucao > indiceDaResolucaoMaxima) {
       return
     }
-    this.#resolucaoAtual = resolucao
   }
+  // get resolucaoMaxima() {
+  //   return this.resolucaoMaxima
+  // }
+
+  // set resolucaoMaxima(resolucao) {
+  //   if (! this.#cameraTraseira ) {
+  //   }
+  // this.resolucaoAtual = resolucao
 }
+
+
+tiraFotos(quantidadeDeFotos) {
+  if (quantidadeDeFotos < 1) {
+    return
+  }
+  if(this.espacoDisponivel <= 0) {
+    return
+  }
+  this.fotosTiradas += quantidadeDeFotos
+  this.espacoDisponivel -= quantidadeDeFotos
+}
+
+class Celular { 
+  constructor(resolucaoMaxCameraFrontal,resolucaoMaxCameraTraseira,espacoDisponivel,fotosTiradas = 0) {
+      this.espacoDisponivel = espacoDisponivel = espacoDisponivel >= 0 ? espacoDisponivel : 0
+      this.cameraTraseira = new CameraDeCelular(
+        this,
+        resolucaoMaxCameraTraseira, 
+        fotosTiradas, 
+      )
+      
+      this.cameraFrontal = new CameraDeCelular(
+        this,
+        resolucaoMaxCameraFrontal, 
+        fotosTiradas,
+      )
+  }   
+}
+
 const polaroid = new Camera('low')
-const s9 = new Celular('high')
 console.log(polaroid)
+polaroid.tiraFotos(3)
+polaroid.tiraFotos(2)
+console.log(polaroid)
+
+const s9 = new Celular('high')
+
 console.log(s9)
-console.log(s9.cameraFrontal.fotosTiradas)
+console.log(s9.cameraFrontal.resolucaoMaxima)
+console.log(s9.cameraTraseira.resolucaoMaxima)
+console.log(s9.cameraTraseira.fotosTiradas)
+console.log(s9.cameraTraseira.resolucaoAtual)
+s9.cameraTraseira.tiraFotos()
+s9.cameraFrontal.tiraFotos()
+console.log(s9.cameraTraseira)
+console.log(s9.cameraTraseira)
+} */

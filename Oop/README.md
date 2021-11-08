@@ -1,0 +1,15 @@
+<!-- <h1> Olá </h1>
+<img src="https://github.com/pedrolucastp.png" /> -->
+
+# Uma pilha deve ter:
+
+
+- propriedade tamanho (length)
+- propriedade topo (para saber qual é o elemento do topo)
+- método que possibilite colocar um elemento no topo da pilha
+- método que possibilite tirar um elemento do topo
+
+## Como deve ser a esturtura do meu elelemento
+### Quais propriedades e métodos que meu objeto deve ter?
+- valor
+- próximo (da pilha): elemento (valor e próximo)
