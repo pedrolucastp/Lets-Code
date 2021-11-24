@@ -1,6 +1,3 @@
-<!-- <h1> Olá </h1>
-<img src="https://github.com/pedrolucastp.png" /> -->
-
 # Uma pilha deve ter:
 
 
