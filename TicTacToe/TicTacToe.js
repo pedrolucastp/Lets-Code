@@ -1,5 +1,6 @@
 export class TicTacToeBoard {
   #view;
+  
 
   constructor() {
     this.cells = [];
@@ -29,7 +30,10 @@ export class TicTacToeBoard {
   checkGameOver() {
     this.gameOver = this.cells.every((cell) => cell.value);
 
+    this.#checkVictory()
+
     if (this.gameOver) {
+        this.disableAllCellsClickEvent()
       alert("Jogo finalizado");
     }
   }
@@ -57,39 +61,34 @@ export class TicTacToeBoard {
           this.cells[index + 6],
         ];
       }
-      console.log(rows);
     });
 
     diagonals = diagonals.map((_, index) => {
       return [
         this.cells[index * 2],
         this.cells[index * 2 + 4 - index * 2],
-        this.cells[index * 2 + 8 - index * 4],
+        this.cells[index * 2 + 8 - index * 4]
       ];
     });
 
-    // diagonals = diagonals.map((_, index) => {
-    //     if (index ==0) {return [
-    //         this.cells[index],
-    //         this.cells[index + 4],
-    //         this.cells[index + 8],
-    //       ];
-    //     }
+    const cellMatrix = [rows, columns, diagonals];
 
-    //     return [
-    //         this.cells[index * 2],
-    //         this.cells[index * 2 + 4],
-    //         this.cells[index * 2 + 8],
-    //     ]
-    // });
-
-    rows.forEach((row) => {
-      if (!this.gameIsOver) {
-        gameIsOver =
-          row.every((cell) => cell === "X") ||
-          row.every((cell) => cell === "O");
-      }
+    cellMatrix.forEach((cellArray) => {
+      cellArray.forEach((cells) => {
+        if (!this.gameIsOver) {
+          this.gameIsOver =
+            cells.every((cell) => cell.value === "X") ||
+            cells.every((cell) => cell.value === "O");
+        }
+      });
     });
+  }
+
+  disableAllCellsClickEvent() {
+    this.cells.forEach(cell => {
+        cell.view.onclick = () => {}
+        cell.view.style.cursor = "not-allowed"
+    })
   }
 }
 
